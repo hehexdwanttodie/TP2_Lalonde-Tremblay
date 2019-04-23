@@ -8,7 +8,7 @@ import java.sql.Statement;
 public class ControleConnexion {
 	Connection conn = null;
 	
-	private Connection connexion() {
+	public Connection connexion() {
 		String url ="jdbc:sqlite:sqlite/db/BD.db";
 		
 		try {
@@ -25,7 +25,7 @@ public class ControleConnexion {
 		return conn;
 	}
 	
-	private Connection deconnexion() {
+	public Connection deconnexion() {
 		
 		try {
 			if (conn != null ) {

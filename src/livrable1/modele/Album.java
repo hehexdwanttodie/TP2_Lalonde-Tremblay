@@ -9,21 +9,21 @@ public class Album {
 		
 	
 	
-	public Album(String nom, boolean membre,int numero, String image) {
+	public Album(String nom, boolean membre,int id_album, String image) {
 		this.nom = nom;
 		this.membre = membre;
-		this.numero = numero;
+		this.id_album = id_album;
 		this.image = image;
 	}
 	public Album(int numero) {
-		this.numero = numero;
+		this.id_album = numero;
 		this.nom = "";
 		this.membre = false;
 		this.image = "parDefault.png";
 	}
 	
 	public int getNumero() {
-		return numero;
+		return id_album;
 	}
 	
 	public String getNom() {

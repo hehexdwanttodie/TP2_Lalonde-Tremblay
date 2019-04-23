@@ -13,9 +13,7 @@ public class GestionArtistes {
 	String requete = "Select * from Artiste";
 	ArrayList<Artiste> listeArtiste = new ArrayList<Artiste>();
 	public void afficherArtiste(){
-		conn.connexion();
-		conn.deconnexion();
-		
+
 		
 	}
 }

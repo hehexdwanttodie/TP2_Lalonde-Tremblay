@@ -9,11 +9,10 @@ public class ControleConnexion {
 	Connection conn = null;
 	
 	private Connection connexion() {
-		String url ="jdbc:sqlite:sqlite/db/BD.db";
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
-			conn = DriverManager.getConnection("jdbc:sqlite:sqlite/SQLite/BD.db");
+			conn = DriverManager.getConnection("jdbc:sqlite:SQLite/BD.db");
 			
 		} catch (ClassNotFoundException cnfe) {
 			System.out.println("Erreur: Driver manquant");

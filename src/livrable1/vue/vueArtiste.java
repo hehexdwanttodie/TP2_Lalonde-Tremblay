@@ -4,22 +4,28 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+
+import livrable1.controleur.ControleurArtiste;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JList;
 
-public class vueArtiste {
+public class VueArtiste {
 
 	private JFrame frame;
+	
+	private ControleurArtiste traitements;
+	
 	private JTextField textRecherche;
 	private JTable tableArtistes;
 	private JTextField textNumero;
 	private JTextField textNom;
+	
+	private JButton btnRechercher;
 
 	/**
 	 * Launch the application.
@@ -28,7 +34,7 @@ public class vueArtiste {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					vueArtiste window = new vueArtiste();
+					VueArtiste window = new VueArtiste();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +46,7 @@ public class vueArtiste {
 	/**
 	 * Create the application.
 	 */
-	public vueArtiste() {
+	public VueArtiste() {
 		initialize();
 	}
 
@@ -53,8 +59,10 @@ public class vueArtiste {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
+		traitements = new ControleurArtiste(this);
+		
 		JLabel lblRechercherUnArtiste = new JLabel("Rechercher un artiste");
-		lblRechercherUnArtiste.setBounds(24, 22, 104, 14);
+		lblRechercherUnArtiste.setBounds(24, 22, 188, 14);
 		lblRechercherUnArtiste.setHorizontalAlignment(SwingConstants.CENTER);
 		frame.getContentPane().add(lblRechercherUnArtiste);
 		
@@ -63,9 +71,10 @@ public class vueArtiste {
 		frame.getContentPane().add(textRecherche);
 		textRecherche.setColumns(10);
 		
-		JButton btnRecherche = new JButton("Recherche");
-		btnRecherche.setBounds(252, 46, 89, 23);
-		frame.getContentPane().add(btnRecherche);
+		btnRechercher = new JButton("Recherche");
+		btnRechercher.setBounds(252, 46, 120, 23);
+		frame.getContentPane().add(btnRechercher);
+		btnRechercher.addActionListener(traitements);
 		
 		JButton btnQuitter = new JButton("Quitter");
 		btnQuitter.setBounds(451, 46, 89, 23);
@@ -77,27 +86,27 @@ public class vueArtiste {
 		frame.getContentPane().add(lblArtistes);
 		
 		JButton btnRemplacer = new JButton("Remplacer");
-		btnRemplacer.setBounds(24, 254, 89, 23);
+		btnRemplacer.setBounds(10, 254, 103, 23);
 		frame.getContentPane().add(btnRemplacer);
 		
 		tableArtistes = new JTable();
-		tableArtistes.setBounds(140, 125, 286, 152);
+		tableArtistes.setBounds(123, 125, 286, 152);
 		frame.getContentPane().add(tableArtistes);
 		
 		JButton btnNouveau = new JButton("Nouveau");
-		btnNouveau.setBounds(451, 121, 89, 23);
+		btnNouveau.setBounds(429, 121, 111, 23);
 		frame.getContentPane().add(btnNouveau);
 		
 		JButton btnAjouter = new JButton("Ajouter");
-		btnAjouter.setBounds(451, 155, 89, 23);
+		btnAjouter.setBounds(429, 155, 111, 23);
 		frame.getContentPane().add(btnAjouter);
 		
 		JButton btnModifier = new JButton("Modifier");
-		btnModifier.setBounds(451, 189, 89, 23);
+		btnModifier.setBounds(429, 189, 111, 23);
 		frame.getContentPane().add(btnModifier);
 		
 		JButton btnSupprimer = new JButton("Supprimer");
-		btnSupprimer.setBounds(451, 223, 89, 23);
+		btnSupprimer.setBounds(429, 223, 111, 23);
 		frame.getContentPane().add(btnSupprimer);
 		
 		JLabel lblInformation = new JLabel("Informations");
@@ -114,21 +123,23 @@ public class vueArtiste {
 		frame.getContentPane().add(lblNom);
 		
 		JLabel lblMembre = new JLabel("Membre");
-		lblMembre.setBounds(24, 419, 46, 14);
+		lblMembre.setBounds(24, 419, 58, 14);
 		frame.getContentPane().add(lblMembre);
 		
 		textNumero = new JTextField();
-		textNumero.setBounds(68, 356, 144, 20);
+		textNumero.setEnabled(false);
+		textNumero.setBounds(79, 358, 144, 20);
 		frame.getContentPane().add(textNumero);
 		textNumero.setColumns(10);
 		
 		textNom = new JTextField();
-		textNom.setBounds(68, 386, 144, 20);
+		textNom.setEnabled(false);
+		textNom.setBounds(80, 386, 144, 20);
 		frame.getContentPane().add(textNom);
 		textNom.setColumns(10);
 		
 		JList listAlbum = new JList();
-		listAlbum.setBounds(252, 356, 144, 99);
+		listAlbum.setBounds(249, 346, 160, 99);
 		frame.getContentPane().add(listAlbum);
 		
 		JLabel lblNewLabel_1 = new JLabel("New label");
@@ -136,7 +147,15 @@ public class vueArtiste {
 		frame.getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(429, 357, 107, 98);
+		lblNewLabel_2.setBounds(420, 351, 120, 91);
 		frame.getContentPane().add(lblNewLabel_2);
+	}
+	
+	public JFrame getFrame() {
+		return frame;
+	}
+	
+	public JButton getBtnRecherche() {
+		return btnRechercher;
 	}
 }

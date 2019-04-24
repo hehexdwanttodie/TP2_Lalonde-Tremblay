@@ -7,6 +7,9 @@ import javax.swing.JLabel;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+
+import livrable1.modele.GestionArtistes;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.Font;
@@ -20,7 +23,7 @@ public class vueArtiste {
 	private JTable tableArtistes;
 	private JTextField textNumero;
 	private JTextField textNom;
-
+	private GestionArtistes artiste;
 	/**
 	 * Launch the application.
 	 */
@@ -79,6 +82,8 @@ public class vueArtiste {
 		JButton btnRemplacer = new JButton("Remplacer");
 		btnRemplacer.setBounds(24, 254, 89, 23);
 		frame.getContentPane().add(btnRemplacer);
+		
+		artiste = new GestionArtistes();
 		
 		tableArtistes = new JTable();
 		tableArtistes.setBounds(140, 125, 286, 152);

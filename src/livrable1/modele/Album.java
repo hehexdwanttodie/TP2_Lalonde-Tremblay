@@ -2,35 +2,44 @@ package livrable1.modele;
 
 public class Album {
 
-		String nom;
-		boolean membre;
+		String titre;
+		String genre;
 		int id_album;
 		String image;
+		int annee;
+		int id_artiste;
 		
 	
 	
-	public Album(String nom, boolean membre,int id_album, String image) {
-		this.nom = nom;
-		this.membre = membre;
+	public Album(int id_album,String titre, String genre, String image, int annee) {
+		this.titre = titre;
+		this.genre = genre;
 		this.id_album = id_album;
+		this.annee = annee;
+				
 		this.image = image;
 	}
-	public Album(int numero) {
-		this.id_album = numero;
-		this.nom = "";
-		this.membre = false;
+	public Album(int id_album) {
+		this.id_album = id_album;
+		this.titre = "";
+		this.genre = "";
+		this.annee = 0;
 		this.image = "parDefault.png";
 	}
 	
-	public int getNumero() {
+	public int getId() {
 		return id_album;
 	}
 	
-	public String getNom() {
-		return nom;
+	public String getTitre() {
+		return titre;
 	}
-	public boolean getMembre() {
-		return membre;
+	public String getGenre() {
+		return genre;
+	}
+	
+	public int getAnnee() {
+		return annee;
 	}
 	public String getImage() {
 		return image;

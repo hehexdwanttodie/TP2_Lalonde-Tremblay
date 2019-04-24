@@ -11,7 +11,7 @@ public class Artiste {
 		
 	
 	
-	public Artiste(String nom, boolean membre,int id_artiste, String image) {
+	public Artiste(int id_artiste, String nom, boolean membre, String image) {
 		this.nom = nom;
 		this.membre = membre;
 		this.id_artiste = id_artiste;
@@ -24,17 +24,17 @@ public class Artiste {
 		this.image = "parDefault.png";
 	}
 	
-	public int getNumero() {
-		return id_artiste;
+	public int getId() {
+		return this.id_artiste;
 	}
 	
 	public String getNom() {
-		return nom;
+		return this.nom;
 	}
 	public boolean getMembre() {
-		return membre;
+		return this.membre;
 	}
 	public String getImage() {
-		return image;
+		return this.image;
 	}
 }

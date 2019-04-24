@@ -13,8 +13,8 @@ public class GestionArtistes extends AbstractTableModel{
 
 	ControleConnexion conn;
 	String requete = "Select * from Artiste";
-	public ArrayList<Artiste> listeArtiste;
-	public ArrayList<Album> listeAlbum;
+	public ArrayList<Artiste> listeArtiste = new ArrayList<Artiste>();
+	public ArrayList<Album> listeAlbum = new ArrayList<Album>();
 	private final String[] lesTitres = {"Id", "Nom", "Membre", "Image"};
 	
 	
@@ -23,7 +23,9 @@ public class GestionArtistes extends AbstractTableModel{
 	}
 	@Override
 	public int getRowCount() {
-		return listeArtiste.size();
+		
+			return listeArtiste.size();
+	
 	}
 	@Override
 	public int getColumnCount() {
@@ -86,6 +88,8 @@ public class GestionArtistes extends AbstractTableModel{
 		return null;
 		
 	}
+	
+	
 }
 
 	

@@ -85,7 +85,9 @@ public class vueArtiste {
 		
 		artiste = new GestionArtistes();
 		
-		tableArtistes = new JTable();
+		
+		GestionArtistes test = new GestionArtistes();
+		tableArtistes = new JTable(test);
 		tableArtistes.setBounds(140, 125, 286, 152);
 		frame.getContentPane().add(tableArtistes);
 		

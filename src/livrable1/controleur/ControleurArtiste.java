@@ -4,25 +4,42 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 
 import livrable1.modele.Artiste;
+import livrable1.modele.GestionArtistes;
 import livrable1.vue.VueArtiste;
 
 public class ControleurArtiste implements ActionListener, MouseListener {
 	
 	VueArtiste vArtiste;
 	Artiste artiste;
+	GestionArtistes gArtiste;
 	
 	public ControleurArtiste(VueArtiste vue) {
 		this.vArtiste = vue;
 		artiste = new Artiste();
 	}
 	
+	public JTable initialiserTableau(JTable table) {
+		
+		ArrayList<Artiste> liste = gArtiste.obtenirListeArtiste();
+		gArtiste = new GestionArtistes(liste);
+		table = new JTable(gArtiste);
+		table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		return table;
+	}
+	
 	
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if ( e.getClickCount() == 1) {
-			//vArtiste.afficherInfos();
+			gArtiste.afficherInfoArtiste();
 			//vArtiste.afficherAlbums();
 		}
 		
@@ -54,7 +71,5 @@ public class ControleurArtiste implements ActionListener, MouseListener {
 		}
 		
 	}
-	
-	
 
 }

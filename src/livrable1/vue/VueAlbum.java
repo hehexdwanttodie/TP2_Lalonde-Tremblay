@@ -46,7 +46,6 @@ public class VueAlbum extends JFrame {
 		frameAlbum.setBounds(100, 100, 450, 300);
 		frameAlbum.getContentPane().setLayout(null);
 		
-		
 		JLabel labelAlbum = new JLabel("New label");
 		labelAlbum.setFont(new Font("Tahoma", Font.BOLD, 16));
 		labelAlbum.setBounds(165, 28, 190, 27);

@@ -8,23 +8,27 @@ import java.sql.Statement;
 public class ControleConnexion {
 	Connection conn = null;
 	
-	private Connection connexion() {
+	public ControleConnexion() {
 		
 		try {
 			Class.forName("org.sqlite.JDBC");
+			System.out.println("Pilote Chargé");
 			conn = DriverManager.getConnection("jdbc:sqlite:SQLite/BD.db");
 			
 		} catch (ClassNotFoundException cnfe) {
 			System.out.println("Erreur: Driver manquant");
+			System.out.println( cnfe.getMessage());
 			
 		} catch (SQLException se) {
 			System.out.println("Erreur: La base de donn\u00E9es manquante.");
 		}
-		
+	}
+	
+	public Connection getConnexion() {
 		return conn;
 	}
 	
-	private Connection deconnexion() {
+	Connection deconnexion() {
 		
 		try {
 			if (conn != null ) {

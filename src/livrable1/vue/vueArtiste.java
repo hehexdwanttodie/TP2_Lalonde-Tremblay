@@ -7,12 +7,16 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import livrable1.controleur.ControleurArtiste;
+import livrable1.modele.GestionArtistes;
 
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.table.DefaultTableModel;
 
 public class VueArtiste {
 
@@ -22,10 +26,14 @@ public class VueArtiste {
 	
 	private JTextField textRecherche;
 	private JTable tableArtistes;
-	private JTextField textNumero;
-	private JTextField textNom;
+	public JTextField textNumero;
+	public JTextField textNom;
+	public JLabel lblNewLabel_1;
+	public JLabel lblNewLabel_2;
+	public JList listAlbum;
 	
 	private JButton btnRechercher;
+	private JTable tableArtiste;
 
 	/**
 	 * Launch the application.
@@ -60,7 +68,7 @@ public class VueArtiste {
 		frame.getContentPane().setLayout(null);
 		
 		traitements = new ControleurArtiste(this);
-		
+
 		JLabel lblRechercherUnArtiste = new JLabel("Rechercher un artiste");
 		lblRechercherUnArtiste.setBounds(24, 22, 188, 14);
 		lblRechercherUnArtiste.setHorizontalAlignment(SwingConstants.CENTER);
@@ -89,9 +97,7 @@ public class VueArtiste {
 		btnRemplacer.setBounds(10, 254, 103, 23);
 		frame.getContentPane().add(btnRemplacer);
 		
-		tableArtistes = new JTable();
-		tableArtistes.setBounds(123, 125, 286, 152);
-		frame.getContentPane().add(tableArtistes);
+		GestionArtistes modeleTable = new GestionArtistes();
 		
 		JButton btnNouveau = new JButton("Nouveau");
 		btnNouveau.setBounds(429, 121, 111, 23);
@@ -138,17 +144,36 @@ public class VueArtiste {
 		frame.getContentPane().add(textNom);
 		textNom.setColumns(10);
 		
-		JList listAlbum = new JList();
+		listAlbum = new JList();
 		listAlbum.setBounds(249, 346, 160, 99);
 		frame.getContentPane().add(listAlbum);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
+		lblNewLabel_1 = new JLabel("New label");
 		lblNewLabel_1.setBounds(24, 158, 89, 85);
 		frame.getContentPane().add(lblNewLabel_1);
 		
-		JLabel lblNewLabel_2 = new JLabel("New label");
+		lblNewLabel_2 = new JLabel("New label");
 		lblNewLabel_2.setBounds(420, 351, 120, 91);
 		frame.getContentPane().add(lblNewLabel_2);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(138, 125, 281, 165);
+		frame.getContentPane().add(scrollPane);
+		
+		tableArtiste = new JTable();
+		tableArtiste.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Numero", "Nom", "Membre"
+			}
+		));
+		
+		scrollPane.setViewportView(tableArtiste);
+		
+		tableArtistes.setModel(modeleTable);
+		frame.getContentPane().add(tableArtistes);
+		tableArtistes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	}
 	
 	public JFrame getFrame() {
@@ -157,5 +182,9 @@ public class VueArtiste {
 	
 	public JButton getBtnRecherche() {
 		return btnRechercher;
+	}
+	
+	public JTable getTable() {
+		return this.tableArtiste;
 	}
 }

@@ -26,7 +26,7 @@ public class ControleurTraitement implements ActionListener {
 				modele.ouvrirAlbum();
 				
 			} else if ( e.getSource() == vue.getBtnQuitter() ) {
-				
+				vue.getFrame().dispose();
 			}
 		
 	}

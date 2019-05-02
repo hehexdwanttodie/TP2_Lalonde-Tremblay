@@ -99,7 +99,7 @@ public class ControleurArtiste implements ActionListener, MouseListener, ListSel
 			
 		} else if ( e.getSource() == vArtiste.getBtnAide() ) {
 			try {
-				File fileFichier = new File("c:definitions.chm");
+				File fileFichier = new File("src/livrable1/AideEnLigne/aideEnLigne.chm");
 				Desktop.getDesktop().open(fileFichier);
 			} catch (IOException msg) {
 				System.out.println(msg.getMessage());

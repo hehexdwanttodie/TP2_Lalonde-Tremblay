@@ -77,6 +77,8 @@ public class VueTraitements {
 		
 		btnQuitter = new JButton("Quitter");
 		btnQuitter.setBounds(476, 298, 89, 23);
+		btnQuitter.addActionListener(traitements);
+		
 		frame.getContentPane().add(btnQuitter);
 		btnAlbum.addActionListener(traitements);
 	}

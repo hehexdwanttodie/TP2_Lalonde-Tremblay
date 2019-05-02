@@ -45,6 +45,7 @@ public class VueArtiste {
 	private JButton btnSupprimer;
 	private JButton btnAjouter;
 	private JButton btnAideEnLigne;
+	private JButton aide;
 
 	/**
 	 * Launch the application.
@@ -163,7 +164,7 @@ public class VueArtiste {
 		textNom.setColumns(10);
 		
 		checkBoxMembre = new JCheckBox("");
-		checkBoxMembre.setBounds(150, 450, 20, 20);
+		checkBoxMembre.setBounds(100, 415, 20, 20);
 		frame.getContentPane().add(checkBoxMembre);
 		
 		listAlbum = new JList<Album>();
@@ -193,7 +194,10 @@ public class VueArtiste {
 		btnAideEnLigne = new JButton("Aide");
 		btnAideEnLigne.setBounds(351, 46, 89, 23);
 		frame.getContentPane().add(btnAideEnLigne);
+		btnAideEnLigne.addActionListener(traitements);
 		
+		
+
 	}
 	
 	public JFrame getFrame() {

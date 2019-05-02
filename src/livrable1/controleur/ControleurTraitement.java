@@ -21,6 +21,7 @@ public class ControleurTraitement implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 			if ( e.getSource() == vue.getBtnArtiste() ) {
 				modele.ouvrirArtiste();
+				
 			} else if ( e.getSource() == vue.getBtnAlbum() ) {
 				modele.ouvrirAlbum();
 				

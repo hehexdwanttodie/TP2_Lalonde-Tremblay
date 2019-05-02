@@ -3,6 +3,7 @@ package livrable1.modele;
 import java.awt.Image;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -259,4 +260,55 @@ public class GestionArtistes extends AbstractTableModel {
 	public Artiste getElement(int row) {
 		return listeArtiste.get(row);
 	}
+	
+	public void rechercher() {
+		
+		String requete = "SELECT * FROM Artiste WHERE nom LIKE ?";
+		
+		try {
+			PreparedStatement statement = conn.getConnexion().prepareStatement( requete );
+			
+			statement.setString(1, "%" + vue.textRecherche.getText() + "%");
+			
+			ResultSet jeuResult = statement.executeQuery();
+			
+			listeArtiste = new ArrayList<Artiste>();
+			
+			while ( jeuResult.next() ) {
+
+				Artiste artiste = new Artiste(jeuResult.getInt("id_artiste"), jeuResult.getString("nom"), jeuResult.getBoolean("membre"), jeuResult.getString("photo"));
+				
+				listeArtiste.add(artiste);
+				
+			}
+			
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	public int nouvelArtiste() {
+		
+		String requete = "SELECT * FROM Artiste ORDER BY id_artiste desc";
+		int id = 0;
+		
+		
+		try {
+			PreparedStatement statement = conn.getConnexion().prepareStatement( requete );
+			
+			ResultSet jeuResul = statement.executeQuery();
+			
+			id = jeuResul.getInt("id_artiste");
+			
+			vue.textNom.setText("");
+			vue.checkBoxMembre.setSelected(false);
+			
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return id;
+	}
+	
 }

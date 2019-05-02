@@ -48,6 +48,7 @@ public class VueTraitements {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Traitements des opérations");
 		frame.setBounds(100, 100, 627, 393);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);

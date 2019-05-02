@@ -6,13 +6,14 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.WindowConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import livrable1.modele.Artiste;
-import livrable1.modele.ControleConnexion;
 import livrable1.modele.GestionArtistes;
 import livrable1.vue.VueArtiste;
 
@@ -69,7 +70,28 @@ public class ControleurArtiste implements ActionListener, MouseListener, ListSel
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if ( e.getSource() == vArtiste.getBtnRecherche()) {
-			//vArtiste.rechercher();
+			gArtiste.rechercher();
+		} else if ( e.getSource() == vArtiste.getBtnQuitter() ) {
+			vArtiste.getFrame().dispose();
+			
+		} else if ( e.getSource() == vArtiste.getBtnNouveau() ) {
+			gArtiste.nouvelArtiste();
+			
+		} else if ( e.getSource() == vArtiste.getBtnAjouter( ) ) {
+			if ( gArtiste.ajouterArtisteBD(artiste) ) {
+				gArtiste.ajouterArtiste(artiste);
+			}
+			
+		} else if ( e.getSource() == vArtiste.getBtnModifier() ) {
+			gArtiste.modifierArtiste(vArtiste.getTable().getSelectedRow() , artiste);
+			
+		} else if ( e.getSource() == vArtiste.getBtnSupprimer() ) {
+			if ( gArtiste.supprimerArtisteBD(artiste) ) {
+				gArtiste.supprimerArtiste(vArtiste.getTable().getSelectedRow() );
+			}
+			
+		} else if ( e.getSource() == vArtiste.getBtnRemplacer() ) {
+			
 		}
 		
 	}

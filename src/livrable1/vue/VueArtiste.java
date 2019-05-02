@@ -8,6 +8,7 @@ import javax.swing.SwingConstants;
 
 import livrable1.controleur.ControleurArtiste;
 import livrable1.modele.Album;
+import livrable1.modele.Artiste;
 import livrable1.modele.GestionArtistes;
 
 import javax.swing.JTextField;
@@ -27,7 +28,7 @@ public class VueArtiste {
 	
 	private ControleurArtiste traitements;
 	
-	private JTextField textRecherche;
+	public JTextField textRecherche;
 	private JTable tableArtistes;
 	public JTextField textNumero;
 	public JTextField textNom;
@@ -37,6 +38,12 @@ public class VueArtiste {
 	public JCheckBox checkBoxMembre;
 	
 	private JButton btnRechercher;
+	private JButton btnQuitter;
+	private JButton btnNouveau;
+	private JButton btnRemplacer;
+	private JButton btnModifier;
+	private JButton btnSupprimer;
+	private JButton btnAjouter;
 
 	/**
 	 * Launch the application.
@@ -66,6 +73,7 @@ public class VueArtiste {
 	 */
 	private void initialize() {
 		frame = new JFrame();
+		frame.setTitle("Gestion des artistes");
 		frame.setBounds(100, 100, 584, 528);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
@@ -87,36 +95,42 @@ public class VueArtiste {
 		frame.getContentPane().add(btnRechercher);
 		btnRechercher.addActionListener(traitements);
 		
-		JButton btnQuitter = new JButton("Quitter");
+		btnQuitter = new JButton("Quitter");
 		btnQuitter.setBounds(451, 46, 89, 23);
 		frame.getContentPane().add(btnQuitter);
+		btnQuitter.addActionListener(traitements);
 		
 		JLabel lblArtistes = new JLabel("Artistes");
 		lblArtistes.setFont(new Font("Tahoma", Font.BOLD, 16));
 		lblArtistes.setBounds(33, 114, 65, 33);
 		frame.getContentPane().add(lblArtistes);
 		
-		JButton btnRemplacer = new JButton("Remplacer");
+		btnRemplacer = new JButton("Remplacer");
 		btnRemplacer.setBounds(10, 254, 103, 23);
 		frame.getContentPane().add(btnRemplacer);
+		btnRemplacer.addActionListener(traitements);
 		
 		GestionArtistes modeleTable = new GestionArtistes();
 		
-		JButton btnNouveau = new JButton("Nouveau");
+		btnNouveau = new JButton("Nouveau");
 		btnNouveau.setBounds(429, 121, 111, 23);
 		frame.getContentPane().add(btnNouveau);
+		btnNouveau.addActionListener(traitements);
 		
-		JButton btnAjouter = new JButton("Ajouter");
+		btnAjouter = new JButton("Ajouter");
 		btnAjouter.setBounds(429, 155, 111, 23);
 		frame.getContentPane().add(btnAjouter);
+		btnAjouter.addActionListener(traitements);
 		
-		JButton btnModifier = new JButton("Modifier");
+		btnModifier = new JButton("Modifier");
 		btnModifier.setBounds(429, 189, 111, 23);
 		frame.getContentPane().add(btnModifier);
+		btnModifier.addActionListener(traitements);
 		
-		JButton btnSupprimer = new JButton("Supprimer");
+		btnSupprimer = new JButton("Supprimer");
 		btnSupprimer.setBounds(429, 223, 111, 23);
 		frame.getContentPane().add(btnSupprimer);
+		btnSupprimer.addActionListener(traitements);
 		
 		JLabel lblInformation = new JLabel("Informations");
 		lblInformation.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -148,7 +162,7 @@ public class VueArtiste {
 		textNom.setColumns(10);
 		
 		checkBoxMembre = new JCheckBox("");
-		checkBoxMembre.setBounds(100, 400, 50, 50);
+		checkBoxMembre.setBounds(150, 450, 20, 20);
 		frame.getContentPane().add(checkBoxMembre);
 		
 		listAlbum = new JList<Album>();
@@ -175,6 +189,7 @@ public class VueArtiste {
 		tableArtistes.setModel(modeleTable);
 		frame.getContentPane().add(tableArtistes);
 		tableArtistes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
 	}
 	
 	public JFrame getFrame() {
@@ -187,5 +202,29 @@ public class VueArtiste {
 	
 	public JTable getTable() {
 		return this.tableArtistes;
+	}
+	
+	public JButton getBtnNouveau() {
+		return this.btnNouveau;
+	}
+	
+	public JButton getBtnAjouter() {
+		return this.btnAjouter;
+	}
+	
+	public JButton getBtnQuitter() {
+		return this.btnQuitter;
+	}
+	
+	public JButton getBtnRemplacer() {
+		return this.btnRemplacer;
+	}
+	
+	public JButton getBtnModifier() {
+		return this.btnModifier;
+	}
+	
+	public JButton getBtnSupprimer() {
+		return this.btnSupprimer;
 	}
 }

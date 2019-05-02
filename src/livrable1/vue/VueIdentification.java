@@ -41,15 +41,11 @@ public class VueIdentification extends JFrame {
 		quitter.setBounds( 267, 220, 106, 31 );
 		panel.add( quitter );
 
-
-
 		JLabel lblconnexion = new JLabel( "Connexion à l'application" );
 		lblconnexion.setFont( new Font( "Tahoma", Font.PLAIN, 22 ) );
 		lblconnexion.setBounds( 36, 49, 275, 27 );
 		panel.add( lblconnexion );
 
-
-		
 		username = new JTextField();
 		username.setFont( new Font( "Tahoma", Font.PLAIN, 12 ) );
 		username.setBounds( 235, 103, 234, 31 );

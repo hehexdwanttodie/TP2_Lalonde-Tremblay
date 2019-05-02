@@ -42,6 +42,7 @@ public class VueAlbum extends JFrame {
 	public VueAlbum() {
 		
 		frameAlbum = new JFrame();
+		frameAlbum.setTitle("Gestion des albums");
 		frameAlbum.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frameAlbum.setBounds(100, 100, 450, 300);
 		frameAlbum.getContentPane().setLayout(null);

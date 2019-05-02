@@ -44,6 +44,8 @@ public class ControleurArtiste implements ActionListener, MouseListener, ListSel
 		if ( e.getClickCount() == 1) {
 			gArtiste.afficherInfoArtiste();
 			gArtiste.afficherImageAlbum();
+		} else if ( e.getClickCount() ==  2) {
+			gArtiste.activerModification();
 		}
 		
 	}

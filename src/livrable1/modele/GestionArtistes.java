@@ -311,4 +311,31 @@ public class GestionArtistes extends AbstractTableModel {
 		return id;
 	}
 	
+	public int activerModification() {
+		
+		int id = 0;
+		
+		int artisteCourant = vue.getTable().getSelectedRow();
+		
+		Artiste a = listeArtiste.get(artisteCourant);
+		
+		id = a.getId();
+		
+		vue.textNom.setEnabled(true);
+		vue.checkBoxMembre.setEnabled(true);
+		
+		return id;
+	}
+	
+	public void modifierArtiste() {
+		
+		String requete = "UPDATE Artiste SET nom = ?, membre = ? WHERE id_artiste = ?";
+		
+		try {
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
 }

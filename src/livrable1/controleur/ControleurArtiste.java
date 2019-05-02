@@ -6,15 +6,16 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import livrable1.modele.Artiste;
 import livrable1.modele.GestionArtistes;
 import livrable1.vue.VueArtiste;
 
-public class ControleurArtiste implements ActionListener, MouseListener {
+public class ControleurArtiste implements ActionListener, MouseListener, ListSelectionListener {
 	
 	VueArtiste vArtiste;
 	Artiste artiste;
@@ -40,7 +41,7 @@ public class ControleurArtiste implements ActionListener, MouseListener {
 	public void mouseClicked(MouseEvent e) {
 		if ( e.getClickCount() == 1) {
 			gArtiste.afficherInfoArtiste();
-			//vArtiste.afficherAlbums();
+			gArtiste.afficherImageAlbum();
 		}
 		
 	}
@@ -68,6 +69,28 @@ public class ControleurArtiste implements ActionListener, MouseListener {
 	public void actionPerformed(ActionEvent e) {
 		if ( e.getSource() == vArtiste.getBtnRecherche()) {
 			//vArtiste.rechercher();
+		}
+		
+	}
+
+	@Override
+	public void valueChanged(ListSelectionEvent e) {
+		if ( !e.getValueIsAdjusting() ) {
+			int numLigne;
+			
+			numLigne = vArtiste.getTable().getSelectedRow();
+			
+			Artiste artiste = gArtiste.getElement(numLigne);
+			vArtiste.textNumero.setText( artiste.getNum() );
+			vArtiste.textNom.setText(artiste.getNom());
+			vArtiste.lblNewLabel_1.setText(artiste.getPhoto());
+			
+			if (artiste.getMembre() ) {
+				vArtiste.checkBoxMembre.setSelected(true);
+			} else {
+				vArtiste.checkBoxMembre.setSelected(false);
+			}
+			
 		}
 		
 	}

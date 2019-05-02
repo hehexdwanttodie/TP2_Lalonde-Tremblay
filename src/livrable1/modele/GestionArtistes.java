@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
 import livrable1.vue.VueArtiste;
@@ -140,8 +141,6 @@ public class GestionArtistes extends AbstractTableModel {
 
 	public ArrayList<Album> obtenirAlbum(int id_artiste) {
 
-		listeAlbum = new ArrayList<Album>();
-
 		if (conn != null) {
 
 			try {
@@ -170,7 +169,7 @@ public class GestionArtistes extends AbstractTableModel {
 	public void afficherImageAlbum() {
 		
 		if ( !vue.listAlbum.isSelectionEmpty() ) {
-			//Album albumTemp = 
+			Album albumTemp =;
 			
 			ImageIcon imageIcon;
 			Image image, icone;
@@ -191,7 +190,73 @@ public class GestionArtistes extends AbstractTableModel {
 			}
 			
 		} else {
-			vue.lblNewLabel_2.setIcon( null );
+			vue.lblNewLabel_2.setIcon( null ); 
 		}
+	}
+	
+	public boolean ajouterArtisteBD(Artiste artiste) {
+		boolean ajout = false;
+
+		String requete = "INSERT INTO Artiste(id_artiste, nom, membre, photo) VALUES ('" + artiste.getId() + "','"
+				+ artiste.getNom() + "','" + artiste.getMembre() + "'.'" + artiste.getPhoto() + ")";
+
+		try {
+			Statement statement = conn.getConnexion().createStatement();
+			statement.executeUpdate(requete);
+			ajout = true;
+
+		} catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null, "Problème rencontré lors de l'ajout de l'artiste:" + sqle.getMessage(),
+					"Résultat", JOptionPane.ERROR_MESSAGE);
+		}
+
+		return ajout;
+	}
+
+	public boolean supprimerArtisteBD(Artiste artiste) {
+		boolean suppression = false;
+
+		String requete = "DELETE FROM Artiste WHERE id_artiste =" + artiste.getId();
+
+		try {
+			Statement statement = conn.getConnexion().createStatement();
+			statement.executeUpdate(requete);
+			suppression = true;
+
+		} catch (SQLException sqle) {
+			JOptionPane.showMessageDialog(null,
+					"Problème rencontré lors de la suppression de l'artiste:" + sqle.getMessage(), "Résultat",
+					JOptionPane.ERROR_MESSAGE);
+		}
+
+		return suppression;
+	}
+
+	public void ajouterArtiste(Artiste artiste) {
+		listeArtiste.add(artiste);
+		fireTableRowsInserted(listeArtiste.size() - 1, listeArtiste.size() - 1);
+	}
+
+	public void supprimerArtiste(int rowIndex) {
+		listeArtiste.remove(rowIndex);
+		// notification de la suppression de la ligne rowIndex à la ligne rowIndex
+		fireTableRowsDeleted(rowIndex, rowIndex);
+	}
+
+	public void modifierArtiste(int firstRow, Artiste artiste) {
+		listeArtiste.set(firstRow, artiste);
+		fireTableRowsUpdated(firstRow, firstRow);
+	}
+
+	// ==========================================================================
+	// permet de mettre à jour le modèle avec une nouvelle ArrayListe
+	// et d'informer les vues affichant ce modèle
+	public void setDonnees(ArrayList<Artiste> nouvellesDonnees) {
+		listeArtiste = nouvellesDonnees;
+		fireTableDataChanged();
+	}
+
+	public Artiste getElement(int row) {
+		return listeArtiste.get(row);
 	}
 }

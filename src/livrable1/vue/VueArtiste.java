@@ -7,11 +7,14 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import livrable1.controleur.ControleurArtiste;
+import livrable1.modele.Album;
 import livrable1.modele.GestionArtistes;
 
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+
 import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.JList;
@@ -30,10 +33,10 @@ public class VueArtiste {
 	public JTextField textNom;
 	public JLabel lblNewLabel_1;
 	public JLabel lblNewLabel_2;
-	public JList listAlbum;
+	public JList<Album> listAlbum;
+	public JCheckBox checkBoxMembre;
 	
 	private JButton btnRechercher;
-	private JTable tableArtiste;
 
 	/**
 	 * Launch the application.
@@ -144,7 +147,11 @@ public class VueArtiste {
 		frame.getContentPane().add(textNom);
 		textNom.setColumns(10);
 		
-		listAlbum = new JList();
+		checkBoxMembre = new JCheckBox("");
+		checkBoxMembre.setBounds(100, 400, 50, 50);
+		frame.getContentPane().add(checkBoxMembre);
+		
+		listAlbum = new JList<Album>();
 		listAlbum.setBounds(249, 346, 160, 99);
 		frame.getContentPane().add(listAlbum);
 		
@@ -160,16 +167,10 @@ public class VueArtiste {
 		scrollPane.setBounds(138, 125, 281, 165);
 		frame.getContentPane().add(scrollPane);
 		
-		tableArtiste = new JTable();
-		tableArtiste.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"Numero", "Nom", "Membre"
-			}
-		));
+		tableArtistes = new JTable();
 		
-		scrollPane.setViewportView(tableArtiste);
+		tableArtistes.getSelectionModel().addListSelectionListener( traitements);
+		scrollPane.setViewportView(tableArtistes);
 		
 		tableArtistes.setModel(modeleTable);
 		frame.getContentPane().add(tableArtistes);
@@ -185,6 +186,6 @@ public class VueArtiste {
 	}
 	
 	public JTable getTable() {
-		return this.tableArtiste;
+		return this.tableArtistes;
 	}
 }

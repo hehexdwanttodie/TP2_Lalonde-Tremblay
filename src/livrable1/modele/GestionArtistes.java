@@ -169,7 +169,7 @@ public class GestionArtistes extends AbstractTableModel {
 	public void afficherImageAlbum() {
 		
 		if ( !vue.listAlbum.isSelectionEmpty() ) {
-			Album albumTemp =;
+			Album albumTemp = ;
 			
 			ImageIcon imageIcon;
 			Image image, icone;

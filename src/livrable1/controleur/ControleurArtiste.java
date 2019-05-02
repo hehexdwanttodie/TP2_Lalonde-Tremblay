@@ -12,6 +12,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import livrable1.modele.Artiste;
+import livrable1.modele.ControleConnexion;
 import livrable1.modele.GestionArtistes;
 import livrable1.vue.VueArtiste;
 

@@ -1,9 +1,12 @@
 package livrable1.controleur;
 
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -94,6 +97,13 @@ public class ControleurArtiste implements ActionListener, MouseListener, ListSel
 			
 		} else if ( e.getSource() == vArtiste.getBtnRemplacer() ) {
 			
+		} else if ( e.getSource() == vArtiste.getBtnAide() ) {
+			try {
+				File fileFichier = new File("c:definitions.chm");
+				Desktop.getDesktop().open(fileFichier);
+			} catch (IOException msg) {
+				System.out.println(msg.getMessage());
+			}
 		}
 		
 	}

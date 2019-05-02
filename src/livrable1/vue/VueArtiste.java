@@ -44,6 +44,7 @@ public class VueArtiste {
 	private JButton btnModifier;
 	private JButton btnSupprimer;
 	private JButton btnAjouter;
+	private JButton btnAideEnLigne;
 
 	/**
 	 * Launch the application.
@@ -86,12 +87,12 @@ public class VueArtiste {
 		frame.getContentPane().add(lblRechercherUnArtiste);
 		
 		textRecherche = new JTextField();
-		textRecherche.setBounds(24, 47, 210, 20);
+		textRecherche.setBounds(10, 47, 210, 20);
 		frame.getContentPane().add(textRecherche);
 		textRecherche.setColumns(10);
 		
 		btnRechercher = new JButton("Recherche");
-		btnRechercher.setBounds(252, 46, 120, 23);
+		btnRechercher.setBounds(230, 46, 111, 23);
 		frame.getContentPane().add(btnRechercher);
 		btnRechercher.addActionListener(traitements);
 		
@@ -184,11 +185,14 @@ public class VueArtiste {
 		tableArtistes = new JTable();
 		
 		tableArtistes.getSelectionModel().addListSelectionListener( traitements);
-		scrollPane.setViewportView(tableArtistes);
 		
 		tableArtistes.setModel(modeleTable);
 		frame.getContentPane().add(tableArtistes);
 		tableArtistes.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		btnAideEnLigne = new JButton("Aide");
+		btnAideEnLigne.setBounds(351, 46, 89, 23);
+		frame.getContentPane().add(btnAideEnLigne);
 		
 	}
 	
@@ -226,5 +230,9 @@ public class VueArtiste {
 	
 	public JButton getBtnSupprimer() {
 		return this.btnSupprimer;
+	}
+	
+	public JButton getBtnAide() {
+		return this.btnAideEnLigne;
 	}
 }
